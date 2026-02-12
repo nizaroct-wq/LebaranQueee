@@ -1,2 +1,431 @@
-# LebaranQueee
-Menu
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>🌙 Ramadan Hampers | Lebaranque</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Poppins (Ramadan modern vibe) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fef9e6;  /* soft cream – Ramadan warmth */
+            color: #0b3b2c;             /* deep green – islamic elegance */
+            line-height: 1.6;
+        }
+
+        /* ramadan ornamentation (subtle) */
+        .ramadan-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M20 20 L80 20 L80 80 L20 80 Z" fill="none" stroke="%230b3b2c" stroke-width="1"/><circle cx="50" cy="50" r="8" fill="%230b3b2c"/><path d="M30 30 L70 70 M70 30 L30 70" stroke="%230b3b2c" stroke-width="1"/></svg>');
+            background-repeat: repeat;
+            background-size: 40px 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- video banner (atas) ----- */
+        .video-banner {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 45%; /* 16:9 aspect ratio, adjust height */
+            margin-top: 20px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(11, 59, 44, 0.12);
+            border: 2px solid #d4af37; /* gold */
+        }
+
+        .video-banner iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* biar teks overlay bisa diklik, video tetap tontonan */
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 59, 44, 0.25); /* transparan gelap */
+            backdrop-filter: blur(2px);
+            color: white;
+            text-shadow: 2px 2px 12px #0b3b2c;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            color: #ffd966;
+            text-shadow: 3px 3px 0 #0b3b2c;
+        }
+
+        .overlay-text p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            background: rgba(212, 175, 55, 0.75);
+            padding: 10px 24px;
+            border-radius: 50px;
+            color: #0b3b2c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* ----- section heading dengan ilham ramadhan ----- */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 30px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            display: inline-block;
+            background: #0b3b2c;
+            color: #ffd966;
+            padding: 12px 40px;
+            border-radius: 60px;
+            box-shadow: 0 8px 0 #7a9e7e;
+            letter-spacing: 2px;
+        }
+
+        .section-title i {
+            margin: 0 10px;
+            color: #d4af37;
+        }
+
+        /* ----- 3 menu foto (product cards) ----- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px 30px;
+            margin: 40px 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 28px 28px 28px 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(11, 59, 44, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 40px rgba(11, 59, 44, 0.18);
+            border-color: #d4af37;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 4px solid #d4af37;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.03);
+        }
+
+        .product-info {
+            padding: 24px 20px 28px;
+            background: white;
+        }
+
+        .product-info h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b3b2c;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-info h3 i {
+            color: #d4af37;
+            font-size: 1.4rem;
+        }
+
+        .product-desc {
+            color: #2d5a4b;
+            font-weight: 400;
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+        }
+
+        .price {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #b8860b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-top: 1px dashed #d4af37;
+            padding-top: 16px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #0b3b2c;
+            background: #f3e7c0;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        /* ----- footer / social media icons (wa & ig) ----- */
+        .social-footer {
+            background: #0b3b2c;
+            margin-top: 70px;
+            padding: 40px 20px;
+            border-radius: 50px 50px 0 0;
+            color: #fef9e6;
+            text-align: center;
+            border-top: 6px solid #d4af37;
+        }
+
+        .social-footer h4 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffd966;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #fef9e6;
+            padding: 16px 36px;
+            border-radius: 80px;
+            text-decoration: none;
+            color: #0b3b2c;
+            font-weight: 600;
+            font-size: 1.4rem;
+            transition: all 0.2s;
+            box-shadow: 0 8px 0 #7a9e7e;
+            border: 2px solid #d4af37;
+        }
+
+        .social-icon i {
+            font-size: 2.2rem;
+        }
+
+        .social-icon:hover {
+            background: #ffd966;
+            transform: scale(1.05);
+            box-shadow: 0 6px 0 #7a9e7e, 0 10px 20px rgba(0,0,0,0.2);
+            border-color: #0b3b2c;
+            color: #0b3b2c;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.9;
+            color: #e6d5a8;
+        }
+
+        /* ----- ramadan little details (lantern & crescent) ----- */
+        .crescent-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            color: #d4af37;
+            font-size: 2rem;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .overlay-text h1 {
+                font-size: 1.9rem;
+            }
+            .overlay-text p {
+                font-size: 1rem;
+            }
+            .section-title h2 {
+                font-size: 1.7rem;
+                padding: 10px 20px;
+            }
+            .product-info h3 {
+                font-size: 1.4rem;
+            }
+            .social-icon {
+                padding: 12px 24px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-banner {
+                padding-bottom: 65%;
+            }
+            .social-links {
+                gap: 20px;
+            }
+            .social-icon {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="ramadan-pattern">
+
+    <!-- █████ BACKSOUND RAMADAN – AUTO PLAY, LOOP █████ -->
+    <audio autoplay loop preload="auto" style="display:none;">
+        <source src="https://files.catbox.moe/ae9fnp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- container utama -->
+    <div class="container">
+
+        <!-- █████ BANNER VIDEO DI ATAS █████ -->
+        <div class="video-banner">
+            <!-- YouTube video background – nuansa Ramadhan (lantern & crescent) autoplay muted loop -->
+            <iframe 
+                src="https://files.catbox.moe/u4rfma.jpg"
+                title="Ramadan Lantern Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+            <div class="overlay-text">
+                <h1>🌙 HAMPERS RAMADAN</h1>
+                <p> ✦ Spesial Lebaran 1446 H ✦ </p>
+                <!-- sedikit ornamen -->
+                <div class="crescent-decoration" style="margin-top: 20px; background: rgba(0,0,0,0.2); padding: 8px 20px; border-radius: 60px;">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- █████ 3 MENU FOTO (HAMPERS) █████ -->
+        <div class="section-title">
+            <h2>
+                <i class="fas fa-gift"></i> Menu Hampers <i class="fas fa-gift"></i>
+            </h2>
+            <p style="color: #0b3b2c; margin-top: 16px; font-size: 1.2rem;">Pilihan istimewa untuk keluarga & sahabat</p>
+        </div>
+
+        <!-- product grid - exactly 3 foto items -->
+        <div class="product-grid">
+            <!-- Contoh hampers 1 -->
+            <div class="product-card">
+                <img class="product-img" src="https://files.catbox.moe/zwykjt.jpg" alt="Kue Sumpia dan Soes coklat" loading="lazy">
+                <div class="product-info">
+                    <h3><i class="fas fa-moon">Isi Kue Sumpia Dan Kue Soes Chocholate</i></h3>
+                    <p class="product-desc"></p>
+                    <div class="price">
+                        Rp 55.000.00<span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- contoh hampers 2-->
+            <div class="product-card">
+                <img class="product-img" src="https://files.catbox.moe/49u1wq.jpg" alt="kue sumpia dan soes coklat" loading="lazy">
+                <div class="product-info">
+                    <h3><i class="fas fa-cookie-bite"></i>Isi Kue Sumpia dan Kue Soes Chocholate</h3>
+                    <p class="product-desc">.</p>
+                    <div class="price">
+                        Rp 55.000.00 <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- contoh hampers 3-->
+            <div class="product-card">
+                <img class="product-img" src="https://files.catbox.moe/yi2tf9.jpg" alt="" loading="lazy">
+                <div class="product-info">
+                    <h3><i class="fas fa-crown"></i> Isi Kue Sumpia dan Kue Soes Chocholate</h3>
+                    <p class="product-desc"></p></p>
+                    <div class="price">
+                        Rp 55.000.00<span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- dekorasi ramadhan -->
+        <div style="display: flex; justify-content: center; gap: 8px; margin: 20px 0 0;">
+            <i class="fas fa-lantern" style="color: #d4af37; font-size: 2rem;"></i>
+            <i class="fas fa-lantern" style="color: #0b3b2c; font-size: 2rem;"></i>
+            <i class="fas fa-lantern" style="color: #d4af37; font-size: 2rem;"></i>
+        </div>
+
+    </div> 
+    <!-- .container end -->
+
+    <!-- █████ FOOTER dengan LOGO WHATSAPP DAN INSTAGRAM (link langsung) █████ -->
+    <footer class="social-footer">
+        <div class="container">
+            <h4>
+                <i class="fas fa-phone-alt"></i>  Hubungi Kami via <span style="color:#fef9e6;">/</span> Ikuti
+            </h4>
+            <div class="social-links">
+                <!-- logo WhatsApp – di pencet arah ke wa.me/6281322544357 -->
+                <a href="https://wa.me/6281322544357" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <!-- logo Instagram – di pencet arah ke link yang diberikan -->
+                <a href="https://www.instagram.com/lebaranque?igsh=ZXc4Y2N5cnZ1NXpn" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+            <!-- informasi toko / ramadan berkah -->
+            <div class="footer-note">
+                <i class="fas fa-star"></i>  Ramadan 1446 H – Hampers penuh berkah  <i class="fas fa-star"></i><br>
+                © 2026 Lebaranque | Semua hampers dibuat dengan cinta.
+            </div>
+            <!-- tambahan logo qr / dekoratif -->
+            <div style="margin-top: 24px; color: #ffd966; font-size: 1.2rem;">
+                <i class="fas fa-mosque"></i>  Marhaban ya Ramadan!  <i class="fas fa-mosque"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- sedikit extra untuk memastikan video banner tidak blocking klik, tapi jika ingin klik tautan di overlay? pointer-events none pada iframe, overlay teks tidak menghalangi -->
+</bom
